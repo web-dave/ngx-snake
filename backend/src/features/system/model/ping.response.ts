@@ -1,3 +1,3 @@
-export interface PingResponse{
-  timestamp: number
+export interface PingResponse {
+  timestamp: number;
 }

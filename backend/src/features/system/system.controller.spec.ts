@@ -1,6 +1,6 @@
-import {Test, TestingModule} from '@nestjs/testing';
-import {SystemController} from "./system.controller";
-import {PingResponse} from "./model/ping.response";
+import { Test, TestingModule } from '@nestjs/testing';
+import { SystemController } from './system.controller';
+import { PingResponse } from './model/ping.response';
 
 describe('SystemController', () => {
   let systemController: SystemController;
