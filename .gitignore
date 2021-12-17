@@ -48,6 +48,8 @@ Thumbs.db
 
 # Backend
 
+backend/.env
+
 # dependencies
 backend/node_modules/
 
