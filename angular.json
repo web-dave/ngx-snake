@@ -26,8 +26,14 @@
             "polyfills": "frontend/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["frontend/favicon.ico", "frontend/assets"],
-            "styles": ["./node_modules/@angular/material/prebuilt-themes/indigo-pink.css", "frontend/styles.scss"],
+            "assets": [
+              "frontend/favicon.ico",
+              "frontend/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "frontend/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -82,15 +88,17 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular-builders/jest:run",
           "options": {
-            "main": "frontend/test.ts",
-            "polyfills": "frontend/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "inlineStyleLanguage": "scss",
-            "assets": ["frontend/favicon.ico", "frontend/assets"],
-            "styles": ["./node_modules/@angular/material/prebuilt-themes/indigo-pink.css", "frontend/styles.scss"],
+            "assets": [
+              "frontend/favicon.ico",
+              "frontend/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "frontend/styles.scss"
+            ],
             "scripts": []
           }
         }

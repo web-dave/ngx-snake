@@ -30,6 +30,9 @@ chrome-profiler-events*.json
 !.vscode/extensions.json
 .history/*
 
+# Intellij Idea
+.idea
+
 # misc
 /.angular/cache
 /.sass-cache

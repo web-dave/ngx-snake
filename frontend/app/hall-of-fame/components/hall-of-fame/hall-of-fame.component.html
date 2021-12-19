@@ -1,0 +1,7 @@
+<mat-tab-group *ngIf="scores$ | async as scores">
+  <ng-container *ngFor="let level of levels">
+    <mat-tab label="{{ level | titlecase }}">
+      <snake-hall-of-fame-table [scoreEntries]="scores | levelScores:level | sortEntriesByScore:sortDirection.DESC"></snake-hall-of-fame-table>
+    </mat-tab>
+  </ng-container>
+</mat-tab-group>
