@@ -5,7 +5,7 @@ import {
   Input,
   ViewChild,
 } from '@angular/core';
-import { filter, fromEvent, interval, map, tap } from 'rxjs';
+import {filter, fromEvent, interval, map, tap} from 'rxjs';
 
 type IDirection = 'right' | 'left' | 'up' | 'down';
 type IPosition = { x: number; y: number };
@@ -21,12 +21,14 @@ export class GameComponent implements AfterViewInit {
   canvas!: HTMLCanvasElement;
   direction: IDirection = 'right';
   ctx!: CanvasRenderingContext2D;
-  food: IPosition = { x: 5, y: 9 };
+  food: IPosition = {x: 5, y: 9};
   @Input() rows = 15;
 
   @Input() cols = 15;
 
   pxlSize = 20;
+
+  gameOver = false;
 
   snake: IPosition[] = [
     {
@@ -35,7 +37,8 @@ export class GameComponent implements AfterViewInit {
     },
   ];
 
-  constructor() {}
+  constructor() {
+  }
 
   ngAfterViewInit(): void {
     this.getCtx();
@@ -59,7 +62,7 @@ export class GameComponent implements AfterViewInit {
 
   moveSnake() {
     const snake = [...this.snake];
-    let nextPos: IPosition = { ...snake[0] };
+    let nextPos: IPosition = {...snake[0]};
     switch (this.direction) {
       case 'up':
         nextPos.y -= 1;
@@ -76,6 +79,9 @@ export class GameComponent implements AfterViewInit {
     }
     nextPos = this.validatePosition(nextPos);
     this.eat(nextPos, snake);
+    if (this.checkPositionInSnake(nextPos, snake)) {
+      this.gameOver = true;
+    }
     this.snake = [nextPos, ...snake];
   }
 
@@ -99,7 +105,10 @@ export class GameComponent implements AfterViewInit {
     if (nextPos.x !== this.food.x || nextPos.y !== this.food.y) {
       snake.pop();
     } else {
-      this.setFootPosition();
+      const nSnake = [nextPos, ...snake];
+      do {
+        this.setFootPosition();
+      } while (this.checkPositionInSnake(this.food, nSnake));
     }
     return snake;
   }
@@ -111,11 +120,20 @@ export class GameComponent implements AfterViewInit {
     };
   }
 
+  checkPositionInSnake(pos: IPosition, snake: IPosition[]): boolean {
+    return snake.some((row) => row.x === pos.x && row.y === pos.y);
+  }
+
   draw() {
     this.drawBG();
-    this.moveSnake();
+    if (!this.gameOver) {
+      this.moveSnake();
+    }
     this.drawSnake();
     this.drawFood();
+    if (this.gameOver) {
+      this.drawFinished();
+    }
   }
 
   drawBG() {
@@ -144,5 +162,11 @@ export class GameComponent implements AfterViewInit {
   getCtx() {
     this.canvas = this.foo.nativeElement;
     this.ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D;
+  }
+
+  drawFinished() {
+    this.ctx.font = '48px serif';
+    this.ctx.fillStyle = 'red';
+    this.ctx.fillText('Game Over!', 2 * this.pxlSize, this.rows / 2 * this.pxlSize);
   }
 }
