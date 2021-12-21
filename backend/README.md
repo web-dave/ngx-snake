@@ -30,6 +30,9 @@ $ npm run start:prod
 For testing copy your .env file to .env.test and change the port number to 3307.
 With this all database based test can use the test db.
 
+If you want to clean the test database and rebuild it with mock data, 
+you can find the test 'clean and fill database with mock data...' in the file "base.test.spec.ts".
+
 ```bash
 # unit tests
 $ npm run test
@@ -45,9 +48,9 @@ $ npm run test:cov
 In this project Prisma is used to connect to the database:
 https://www.prisma.io/
 
-You can find a docker-compose-db.yml in the folder "docker" to run a mariaDb locally for development.
+You can find a docker-compose-db.yml in the folder "docker" to run a mariaDb locally for development and test.
 
-## Test connection
+## Testing availability 
 The backend can be checked to see if it is running and responding via the following endpoint:
 http(s)://<domain>/api/v1/system/ping
 
