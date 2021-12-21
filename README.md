@@ -6,7 +6,7 @@ Snake game.
 ## Techstack
 
 - angular
-- backend unknown
+- NestJs, Prisma
 - rxjs
 
 ## work with us.
