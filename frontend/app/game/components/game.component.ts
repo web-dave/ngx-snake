@@ -75,14 +75,7 @@ export class GameComponent implements AfterViewInit {
         break;
     }
     nextPos = this.validatePosition(nextPos);
-    if (nextPos.x !== this.food.x || nextPos.y !== this.food.y) {
-      snake.pop();
-    } else {
-      this.food = {
-        x: Math.floor(Math.random() * this.cols),
-        y: Math.floor(Math.random() * this.rows),
-      };
-    }
+    this.eat(nextPos, snake);
     this.snake = [nextPos, ...snake];
   }
 
@@ -102,7 +95,21 @@ export class GameComponent implements AfterViewInit {
     return pos;
   }
 
-  eat() {}
+  eat(nextPos: IPosition, snake: IPosition[]) {
+    if (nextPos.x !== this.food.x || nextPos.y !== this.food.y) {
+      snake.pop();
+    } else {
+      this.setFootPosition();
+    }
+    return snake;
+  }
+
+  setFootPosition() {
+    this.food = {
+      x: Math.floor(Math.random() * this.cols),
+      y: Math.floor(Math.random() * this.rows),
+    };
+  }
 
   draw() {
     this.drawBG();
