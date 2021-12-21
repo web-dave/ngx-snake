@@ -1,5 +1,14 @@
-import { AfterViewInit, Component, ElementRef, Input, ViewChild, } from '@angular/core';
-import { fromEvent, interval } from 'rxjs';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  ViewChild,
+} from '@angular/core';
+import { filter, fromEvent, interval, map } from 'rxjs';
+
+type IDirection = 'right' | 'left' | 'up' | 'down';
+type IPosition = { x: number; y: number };
 
 @Component({
   selector: 'snake-game',
@@ -10,50 +19,80 @@ export class GameComponent implements AfterViewInit {
   @ViewChild('canvas') foo!: ElementRef<HTMLCanvasElement>;
 
   canvas!: HTMLCanvasElement;
-
+  direction: IDirection = 'right';
   ctx!: CanvasRenderingContext2D;
 
-  @Input() rows = 10;
+  @Input() rows = 15;
 
-  @Input() cols = 10;
+  @Input() cols = 15;
 
   pxlSize = 20;
 
-  snake = [
+  snake: IPosition[] = [
     {
       x: 2,
       y: 4,
-    },
-    {
-      x: 1,
-      y: 4,
-    },
-    {
-      x: 1,
-      y: 5,
-    },
-    {
-      x: 1,
-      y: 6,
     },
   ];
 
   constructor() {}
 
-  go(e: any) {
-    console.log(e);
-  }
-
   ngAfterViewInit(): void {
     this.getCtx();
-    fromEvent<KeyboardEvent>(document.body, 'keyup').subscribe(({ code }) =>
-      console.log(code)
-    );
-    interval(1000).subscribe(() => this.draw());
+    fromEvent<KeyboardEvent>(document.body, 'keyup')
+      .pipe(
+        map((event) => event.code),
+        map((code) => code.replace('Arrow', '').toLowerCase() as IDirection),
+        filter((code) => ['right', 'left', 'up', 'down'].includes(code))
+      )
+      .subscribe((code) => {
+        console.log(code);
+        this.direction = code;
+      });
+    interval(300).subscribe(() => this.draw());
+  }
+
+  moveSnake() {
+    const snake = [...this.snake];
+    let nextPos: IPosition = { ...snake[0] };
+    snake.pop();
+    switch (this.direction) {
+      case 'up':
+        nextPos.y -= 1;
+        break;
+      case 'down':
+        nextPos.y += 1;
+        break;
+      case 'left':
+        nextPos.x -= 1;
+        break;
+      case 'right':
+        nextPos.x += 1;
+        break;
+    }
+    nextPos = this.validatePosition(nextPos);
+    this.snake = [nextPos, ...snake];
+  }
+
+  validatePosition(pos: IPosition): IPosition {
+    if (pos.y <= -1) {
+      pos.y = this.rows - 1;
+    }
+    if (pos.y >= this.rows) {
+      pos.y = 0;
+    }
+    if (pos.x <= -1) {
+      pos.x = this.cols - 1;
+    }
+    if (pos.x >= this.cols) {
+      pos.x = 0;
+    }
+    return pos;
   }
 
   draw() {
     this.drawBG();
+    this.moveSnake();
     this.drawSnake();
     this.drawFood();
   }
