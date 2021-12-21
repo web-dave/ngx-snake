@@ -49,6 +49,7 @@ Thumbs.db
 # Backend
 
 backend/.env
+backend/.env.test
 
 # dependencies
 backend/node_modules/
@@ -78,7 +79,6 @@ backend/example_dist
 backend/example
 
 # tests
-backend/test
 backend/benchmarks/memory
 backend/coverage
 backend/.nyc_output
