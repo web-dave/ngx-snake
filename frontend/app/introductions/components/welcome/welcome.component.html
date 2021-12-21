@@ -1,23 +1,24 @@
 <div class="welcome-wrapper">
-  <snake-ui-card [cardSubtitle]="subTitle"
-                 [cardTitle]="title">
+  <snake-ui-card [cardSubtitle]="subTitle" [cardTitle]="title">
     <div card-content>
-      <p>Hi, cool that you are here.
-         This is a community driven retro game called <i>Snake</i>. WebDave is presenting the process bit by bit in his Twitch stream, just check
-         it out! Otherwise try to get on the leaderboard in the meantime! 😎
+      <p>
+        Hi, cool that you are here. This is a community driven retro game called
+        <i>Snake</i>. WebDave is presenting the process bit by bit in his Twitch
+        stream, just check it out! Otherwise try to get on the leaderboard in
+        the meantime! 😎
       </p>
     </div>
 
     <ng-container card-actions>
       <div class="card-actions">
-        <a class="twitch-link" href="https://www.twitch.tv/webdave_de"
-           mat-button
-           target="_blank">Twitch
+        <a
+          class="twitch-link"
+          href="https://webdave.tv"
+          mat-button
+          target="_blank"
+          >Twitch
         </a>
-        <button color="accent"
-                mat-button
-                routerLink="/game">Start
-        </button>
+        <button color="accent" mat-button routerLink="/game">Start</button>
       </div>
     </ng-container>
   </snake-ui-card>
