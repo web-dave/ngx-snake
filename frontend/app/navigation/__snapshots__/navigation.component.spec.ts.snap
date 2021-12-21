@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavigationComponent should match snapshot 1`] = `
+<snake-navigation
+  __ngContext__={[Function LRootView]}
+  breakpointObserver={[Function BreakpointObserver]}
+  isHandset$={[Function Observable]}
+>
+  <mat-sidenav-container
+    class="mat-drawer-container mat-sidenav-container sidenav-container"
+  >
+    <div
+      class="mat-drawer-backdrop"
+    />
+    <div
+      aria-hidden="true"
+      class="cdk-visually-hidden cdk-focus-trap-anchor"
+    />
+    <mat-sidenav
+      class="mat-drawer mat-sidenav sidenav ng-trigger ng-trigger-transform mat-drawer-side mat-drawer-opened mat-sidenav-fixed"
+      fixedinviewport=""
+      role="navigation"
+      style="top:0px;bottom:0px;transform:none;visibility:visible;0:top;1:bottom;2:transform;3:visibility;"
+      tabindex="-1"
+    >
+      <div
+        cdkscrollable=""
+        class="mat-drawer-inner-container"
+      >
+        <mat-toolbar
+          class="mat-toolbar mat-toolbar-single-row"
+        >
+          Menu
+        </mat-toolbar>
+        <mat-nav-list
+          class="mat-nav-list mat-list-base"
+          role="navigation"
+        >
+          <a
+            class="mat-list-item mat-focus-indicator"
+            href="/intro"
+            mat-list-item=""
+            routerlink="/intro"
+            routerlinkactive="active"
+          >
+            <div
+              class="mat-list-item-content"
+            >
+              <div
+                class="mat-ripple mat-list-item-ripple"
+                mat-ripple=""
+              />
+              <div
+                class="mat-list-text"
+              />
+              Home 
+            </div>
+          </a>
+          <a
+            class="mat-list-item mat-focus-indicator"
+            href="/game"
+            mat-list-item=""
+            routerlink="/game"
+            routerlinkactive="active"
+          >
+            <div
+              class="mat-list-item-content"
+            >
+              <div
+                class="mat-ripple mat-list-item-ripple"
+                mat-ripple=""
+              />
+              <div
+                class="mat-list-text"
+              />
+              Game 
+            </div>
+          </a>
+          <a
+            class="mat-list-item mat-focus-indicator"
+            href="/hof"
+            mat-list-item=""
+            routerlink="/hof"
+            routerlinkactive="active"
+          >
+            <div
+              class="mat-list-item-content"
+            >
+              <div
+                class="mat-ripple mat-list-item-ripple"
+                mat-ripple=""
+              />
+              <div
+                class="mat-list-text"
+              />
+              Hall of Fame 
+            </div>
+          </a>
+        </mat-nav-list>
+      </div>
+    </mat-sidenav>
+    <div
+      aria-hidden="true"
+      class="cdk-visually-hidden cdk-focus-trap-anchor"
+    />
+    <mat-sidenav-content
+      class="mat-drawer-content mat-sidenav-content"
+    >
+      <mat-toolbar
+        class="mat-toolbar mat-primary mat-toolbar-single-row"
+        color="primary"
+      >
+        <span>
+          ngx-snake
+        </span>
+      </mat-toolbar>
+      <router-outlet />
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</snake-navigation>
+`;

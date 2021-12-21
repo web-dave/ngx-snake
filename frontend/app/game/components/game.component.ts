@@ -1,13 +1,5 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  HostListener,
-  Input,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import { interval, fromEvent, map } from 'rxjs';
+import { AfterViewInit, Component, ElementRef, Input, ViewChild, } from '@angular/core';
+import { fromEvent, interval } from 'rxjs';
 
 @Component({
   selector: 'snake-game',
@@ -16,11 +8,17 @@ import { interval, fromEvent, map } from 'rxjs';
 })
 export class GameComponent implements AfterViewInit {
   @ViewChild('canvas') foo!: ElementRef<HTMLCanvasElement>;
+
   canvas!: HTMLCanvasElement;
+
   ctx!: CanvasRenderingContext2D;
+
   @Input() rows = 10;
+
   @Input() cols = 10;
+
   pxlSize = 20;
+
   snake = [
     {
       x: 2,
@@ -39,7 +37,9 @@ export class GameComponent implements AfterViewInit {
       y: 6,
     },
   ];
+
   constructor() {}
+
   go(e: any) {
     console.log(e);
   }
@@ -59,7 +59,7 @@ export class GameComponent implements AfterViewInit {
   }
 
   drawBG() {
-    this.drawRect('#4b9664', 0, 0, this.canvas.width, this.canvas.height);
+    this.drawRect('#4B9664', 0, 0, this.canvas.width, this.canvas.height);
   }
 
   drawSnake() {
@@ -67,7 +67,7 @@ export class GameComponent implements AfterViewInit {
   }
 
   drawFood() {
-    this.drawRect('#2ef789', 5, 9);
+    this.drawRect('#2EF789', 5, 9);
   }
 
   drawRect(

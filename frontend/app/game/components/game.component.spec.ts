@@ -22,4 +22,17 @@ describe('GameComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should draw BG, Food and Snake', () => {
+    const drawBG = jest.spyOn(component, 'drawBG');
+    const drawFood = jest.spyOn(component, 'drawFood');
+    const drawSnake = jest.spyOn(component, 'drawSnake');
+
+    component.ctx = {fillStyle: '', fillRect(x: number, y: number, w: number, h: number) {}} as CanvasRenderingContext2D;
+    component.draw();
+
+    expect(drawBG).toHaveBeenCalledTimes(1);
+    expect(drawFood).toHaveBeenCalledTimes(1);
+    expect(drawSnake).toHaveBeenCalledTimes(1);
+  });
 });

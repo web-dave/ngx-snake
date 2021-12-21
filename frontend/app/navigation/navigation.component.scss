@@ -1,3 +1,13 @@
+.mat-nav-list a.active {
+  background-color: rgb(244, 143, 177);
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
 .sidenav-container {
   height: 100%;
 }
@@ -10,8 +20,3 @@
   background: inherit;
 }
 
-.mat-toolbar.mat-primary {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
