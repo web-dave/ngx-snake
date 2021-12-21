@@ -83,5 +83,7 @@ backend/benchmarks/memory
 backend/coverage
 backend/.nyc_output
 backend/packages/graphql
-backend/benchmarks/memory
 backend/build/config\.gypi
+
+# local db mountpoint
+backend/docker/mountpoints
