@@ -42,8 +42,8 @@ $ npm run test:cov
 In this project Prisma is used to connect to the database:
 https://www.prisma.io/
 
-You can find a docker-compose-db.yml in the folder "docker" to run a mariaDb locally for development.
-
+You can find a docker-compose.yml in the folder "docker" to run a mariaDb locally for development.  
+* command: `docker-compose up -d`
 
 ## License
 
