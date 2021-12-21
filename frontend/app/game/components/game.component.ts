@@ -5,7 +5,7 @@ import {
   Input,
   ViewChild,
 } from '@angular/core';
-import { filter, fromEvent, interval, map } from 'rxjs';
+import { filter, fromEvent, interval, map, tap } from 'rxjs';
 
 type IDirection = 'right' | 'left' | 'up' | 'down';
 type IPosition = { x: number; y: number };
@@ -21,7 +21,7 @@ export class GameComponent implements AfterViewInit {
   canvas!: HTMLCanvasElement;
   direction: IDirection = 'right';
   ctx!: CanvasRenderingContext2D;
-
+  food: IPosition = { x: 5, y: 9 };
   @Input() rows = 15;
 
   @Input() cols = 15;
@@ -41,6 +41,11 @@ export class GameComponent implements AfterViewInit {
     this.getCtx();
     fromEvent<KeyboardEvent>(document.body, 'keyup')
       .pipe(
+        tap((event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          event.cancelBubble = true;
+        }),
         map((event) => event.code),
         map((code) => code.replace('Arrow', '').toLowerCase() as IDirection),
         filter((code) => ['right', 'left', 'up', 'down'].includes(code))
@@ -55,7 +60,6 @@ export class GameComponent implements AfterViewInit {
   moveSnake() {
     const snake = [...this.snake];
     let nextPos: IPosition = { ...snake[0] };
-    snake.pop();
     switch (this.direction) {
       case 'up':
         nextPos.y -= 1;
@@ -71,6 +75,14 @@ export class GameComponent implements AfterViewInit {
         break;
     }
     nextPos = this.validatePosition(nextPos);
+    if (nextPos.x !== this.food.x || nextPos.y !== this.food.y) {
+      snake.pop();
+    } else {
+      this.food = {
+        x: Math.floor(Math.random() * this.cols),
+        y: Math.floor(Math.random() * this.rows),
+      };
+    }
     this.snake = [nextPos, ...snake];
   }
 
@@ -90,6 +102,8 @@ export class GameComponent implements AfterViewInit {
     return pos;
   }
 
+  eat() {}
+
   draw() {
     this.drawBG();
     this.moveSnake();
@@ -106,7 +120,7 @@ export class GameComponent implements AfterViewInit {
   }
 
   drawFood() {
-    this.drawRect('#2EF789', 5, 9);
+    this.drawRect('#2EF789', this.food.x, this.food.y);
   }
 
   drawRect(
