@@ -1,13 +1,26 @@
 {
   "name": "ngx-snake",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "lint": "eslint frontend/"
+    "clean": "npm run be:clean && npm run fe:clean",
+    "build": "npm run be:build && npm run fe:build",
+    "lint": "npm run be:lint && npm run fe:lint",
+    "docker:up": "cd docker && docker-compose up -d",
+    "docker:down": "cd docker && docker-compose down",
+    "be:clean": "cd backend && rimraf dist && rimraf coverage",
+    "be:start": "cd backend && nest start",
+    "be:watch": "cd backend && nest start --watch",
+    "be:build": "cd backend && nest build",
+    "be:test": "cd backend && jest",
+    "be:test:watch": "cd backend && jest --watch",
+    "be:test:coverage": "cd backend && jest --coverage",
+    "be:lint": "cd backend && eslint .",
+    "be:format": "cd backend && prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "fe:clean": "cd frontend && rimraf dist && rimraf coverage",
+    "fe:watch": "cd frontend && ng serve",
+    "fe:build": "cd frontend && ng build",
+    "fe:test": "cd frontend && ng test",
+    "fe:lint": "cd frontend && ng lint"
   },
   "private": true,
   "dependencies": {
@@ -23,7 +36,16 @@
     "@angular/router": "~13.0.0",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "@nestjs/common": "^8.2.3",
+    "@nestjs/config": "^1.1.5",
+    "@nestjs/core": "^8.2.3",
+    "@nestjs/platform-express": "^8.2.3",
+    "@nestjs/swagger": "^5.1.5",
+    "@prisma/client": "^3.7.0",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.2",
+    "swagger-ui-express": "^4.3.0"
   },
   "devDependencies": {
     "@angular-builders/jest": "latest",
@@ -44,6 +66,37 @@
     "eslint-plugin-unused-imports": "^2.0.0",
     "jest": "^27.4.5",
     "jest-preset-angular": "^11.0.1",
-    "typescript": "~4.4.3"
+    "typescript": "~4.4.3",
+    "@nestjs/cli": "^8.1.6",
+    "@nestjs/schematics": "^8.0.5",
+    "@nestjs/testing": "^8.2.3",
+    "@types/express": "^4.17.13",
+    "@types/supertest": "^2.0.11",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.5.1",
+    "prisma": "^3.7.0",
+    "supertest": "^6.1.6",
+    "ts-jest": "^27.1.2",
+    "ts-loader": "^9.2.6",
+    "ts-node": "^10.4.0",
+    "tsconfig-paths": "^3.12.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
   }
 }

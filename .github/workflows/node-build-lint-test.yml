@@ -21,6 +21,6 @@ jobs:
           node-version: '16'
           cache: 'npm'
       - run: npm ci
-      - run: npm run build --if-present
+      - run: npm run build
       - run: npm run lint
       # - run: npm test # disabled because of failing backend tests
