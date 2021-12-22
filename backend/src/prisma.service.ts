@@ -2,12 +2,12 @@ import { Injectable, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
 
 @Injectable()
-export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
+export class PrismaService
+  extends PrismaClient
+  implements OnModuleInit, OnModuleDestroy
+{
 
-  private prisma = new PrismaClient();
-  private toExecuteSql: any[] = [];
-
-  async  onModuleInit() {
+  async onModuleInit() {
     await this.$connect();
   }
 
@@ -15,12 +15,4 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
     await this.$disconnect();
   }
 
-  async add(toAdd) {
-    this.toExecuteSql.push(toAdd);
-  }
-
-  async execute() {
-    await this.prisma.$transaction(this.toExecuteSql);
-    this.toExecuteSql = [];
-  }
 }
