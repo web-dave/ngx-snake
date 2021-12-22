@@ -1,13 +1,12 @@
 import { execSync } from 'child_process';
 import { PrismaClient } from '@prisma/client';
-import { UserMdf } from '../mdf/user.mdf';
+import { ScoreEntryMdf } from '../mdf/score.entry.mdf';
 
 export class TestDbService {
   private prisma: PrismaClient;
 
   constructor() {
     this.prisma = new PrismaClient();
-    console.log(process.env.DATABASE_URL);
   }
 
   public async cleanAndRebuildDb(): Promise<void> {
@@ -34,7 +33,7 @@ export class TestDbService {
 
   public async createData(): Promise<void> {
     console.debug('Fill db with data...');
-    await new UserMdf(this.prisma).create();
+    await new ScoreEntryMdf(this.prisma).create();
     console.debug('Done');
   }
 }
