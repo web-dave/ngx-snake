@@ -8,7 +8,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
-    "format": "prettier --write \\\"src/**/*.ts\\\" \\\"src/test/**/*.ts\\\"",
+    "format": "prettier --write \\\\\\\"src/**/*.ts\\\\\\\" \\\\\\\"test/**/*.ts\\\\\\\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
@@ -18,7 +18,7 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config src/test/jest-e2e.json",
+    "test:e2e": "jest --config test/jest-e2e.json",
     "test:create:db": "npx dotenv -e .env.test -- npx prisma migrate deploy"
   },
   "dependencies": {
@@ -64,7 +64,7 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
+    "roots": ["src", "test"],
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
@@ -73,6 +73,7 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "setupFiles": ["./test/test-setup.ts"]
   }
 }
