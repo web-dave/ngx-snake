@@ -141,7 +141,35 @@ export class GameComponent implements AfterViewInit {
   }
 
   drawSnake() {
-    this.snake.forEach((pos) => this.drawRect('deeppink', pos.x, pos.y));
+    this.snake.forEach((pos, index) => {
+      if (index === 0) {
+        this.drawSnakeFace(pos);
+      } else {
+        this.drawRect('deeppink', pos.x, pos.y);
+      }
+    });
+  }
+
+  drawSnakeFace(pos: IPosition) {
+    const halfSize = this.pxlSize / 2;
+    this.ctx.fillStyle = 'deeppink';
+    // Half Rect
+    this.ctx.fillRect(
+      (pos.x * this.pxlSize) + (this.direction === 'left' ? halfSize : 0),
+      (pos.y * this.pxlSize) + (this.direction === 'up' ? halfSize : 0),
+      (this.direction === 'left' || this.direction === 'right' ? halfSize : this.pxlSize),
+      (this.direction === 'left' || this.direction === 'right' ? this.pxlSize : halfSize));
+    this.ctx.beginPath();
+    this.ctx.arc((pos.x * this.pxlSize) + halfSize, (pos.y * this.pxlSize) + halfSize, halfSize, 0, Math.PI * 2, false);
+    this.ctx.fill();
+    const quarterSize = halfSize / 2;
+    this.ctx.beginPath();
+    this.ctx.fillStyle = 'black';
+    // Eye
+    this.ctx.arc(
+      (pos.x * this.pxlSize) + (this.direction === 'left' || this.direction === 'right' ? halfSize : quarterSize),
+      (pos.y * this.pxlSize) + (this.direction === 'left' || this.direction === 'right' ? quarterSize : halfSize), 3, 0, Math.PI * 2, false);
+    this.ctx.stroke();
   }
 
   drawFood() {
@@ -166,7 +194,8 @@ export class GameComponent implements AfterViewInit {
 
   drawFinished() {
     this.ctx.font = '48px serif';
-    this.ctx.fillStyle = 'red';
+    this.ctx.fillStyle = '#730942';
     this.ctx.fillText('Game Over!', 2 * this.pxlSize, this.rows / 2 * this.pxlSize);
+    this.ctx.fillText('Points: ' + this.snake.length, 2 * this.pxlSize, this.rows / 2 * this.pxlSize + (this.pxlSize * 2));
   }
 }
