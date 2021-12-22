@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ScoreEntry } from '../../../core/models/score-entry';
@@ -10,7 +10,7 @@ import { HallOfFameService } from '../../services/hall-of-fame.service';
   templateUrl: './hall-of-fame.component.html',
   styleUrls: ['./hall-of-fame.component.scss']
 })
-export class HallOfFameComponent implements OnInit {
+export class HallOfFameComponent {
   levels: string[] = [];
 
   sortDirection = SortDirection;
@@ -23,8 +23,7 @@ export class HallOfFameComponent implements OnInit {
       })
     );
 
-  constructor(private hallOfFameService: HallOfFameService) { }
-
-  ngOnInit(): void {
+  constructor(private hallOfFameService: HallOfFameService) {
   }
+
 }

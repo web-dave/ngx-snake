@@ -2,7 +2,6 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { PortalModule } from '@angular/cdk/portal';
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -59,11 +58,9 @@ const materialModules = [
 ];
 
 @NgModule({
-  declarations: [],
   imports: [...materialModules],
   exports: [...materialModules]
 })
-
 
 // TODO only use this module for testing purpose!!! -> https://indepth.dev/posts/1191/stop-using-shared-material-module
 export class MaterialTestingModule {
