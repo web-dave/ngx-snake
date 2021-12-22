@@ -18,4 +18,8 @@ export class HallOfFameService {
       };
     });
   }
+
+  async add(scoreEntry: ScoreEntryDto) {
+    return await this.prisma.scoreEntry.create({ data: scoreEntry });
+  }
 }
