@@ -1,9 +1,15 @@
-import {ScoreEntryLevel} from "@prisma/client";
+import { ScoreEntryLevel } from '@prisma/client';
+import { ApiProperty } from '@nestjs/swagger';
 
-export interface ScoreEntryDto {
+export class ScoreEntryDto {
+  @ApiProperty()
   id: string;
+  @ApiProperty()
   date: Date;
+  @ApiProperty()
   level: ScoreEntryLevel;
+  @ApiProperty()
   score: number;
+  @ApiProperty()
   username: string;
 }
