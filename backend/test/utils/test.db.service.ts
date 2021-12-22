@@ -1,39 +1,46 @@
-import { execSync } from 'child_process';
-import { PrismaClient } from '@prisma/client';
+import { exec } from 'child_process';
 import { ScoreEntryMdf } from '../mdf/score.entry.mdf';
+import { PrismaService } from '../../src/prisma.service';
 
 export class TestDbService {
-  private prisma: PrismaClient;
+  private prismaService: PrismaService;
 
   constructor() {
-    this.prisma = new PrismaClient();
+    this.prismaService = new PrismaService();
   }
 
   public async cleanAndRebuildDb(): Promise<void> {
-    await this.prisma.$connect();
     await this.clearSchema();
     await this.createShema();
     await this.createData();
-    await this.prisma.$disconnect();
   }
 
   public async clearSchema(): Promise<void> {
-    console.debug('Clear db schema for testing...');
-    await this.prisma.$executeRaw`DROP TABLE IF EXISTS _prisma_migrations`;
-    await this.prisma.$executeRaw`DROP TABLE IF EXISTS ScoreEntry`;
-    await this.prisma.$executeRaw`DROP TABLE IF EXISTS User`;
-    console.debug('Done');
+    await this.prismaService
+      .$executeRaw`DROP TABLE IF EXISTS _prisma_migrations`;
+    await this.prismaService.$executeRaw`DROP TABLE IF EXISTS ScoreEntry`;
+    await this.prismaService.$executeRaw`DROP TABLE IF EXISTS User`;
   }
 
   public async createShema(): Promise<void> {
-    console.debug('Create db schema for testing...');
-    execSync('npm run test:create:db');
-    console.debug('Done');
+    // await exec('npm run test:create:db');
+    await this.execPromise('npm run test:create:db');
   }
 
   public async createData(): Promise<void> {
-    console.debug('Fill db with data...');
-    await new ScoreEntryMdf(this.prisma).create();
-    console.debug('Done');
+    await new ScoreEntryMdf(this.prismaService).create();
+  }
+
+  private execPromise(command) {
+    return new Promise(function (resolve, reject) {
+      exec(command, (error, stdout, stderr) => {
+        if (error) {
+          reject(error);
+          return;
+        }
+
+        resolve(stdout.trim());
+      });
+    });
   }
 }

@@ -16,7 +16,7 @@ describe('HallOfFameService', () => {
 
     service = module.get<HallOfFameService>(HallOfFameService);
 
-    testDbService.cleanAndRebuildDb();
+    await testDbService.cleanAndRebuildDb();
   });
 
   it('should be defined', () => {
@@ -25,6 +25,6 @@ describe('HallOfFameService', () => {
 
   it('can get hall of fame for one level...', async () => {
     const result = await service.getList(ScoreEntryLevel.BEGINNER);
-    expect(result.length).toEqual(1);
+    expect(result.length).toEqual(3);
   });
 });
