@@ -11,6 +11,7 @@ const testDbService = new TestDbService();
 describe('HallOfFameService', () => {
   let service: HallOfFameService;
   let prismaService: PrismaService;
+  let scoreEntry: ScoreEntryDto;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -21,6 +22,14 @@ describe('HallOfFameService', () => {
     prismaService = module.get<PrismaService>(PrismaService);
 
     await testDbService.cleanAndRebuildDb();
+
+    scoreEntry = {
+      id: 'c752a511-4adb-4acb-9321-fae716cd8fc1',
+      score: 80,
+      date: TestDataUtil.getDate(),
+      level: ScoreEntryLevel.BEGINNER,
+      username: 'tscarrisbrick1',
+    };
   });
 
   it('should be defined', () => {
@@ -34,16 +43,26 @@ describe('HallOfFameService', () => {
 
   it('can add new ScoreEntry...', async () => {
     const actualCount = await prismaService.scoreEntry.count();
-    const scoreEntry: ScoreEntryDto = {
-      id: 'c752a511-4adb-4acb-9321-fae716cd8fc1',
-      score: 500,
-      date: TestDataUtil.getDate(),
-      level: ScoreEntryLevel.BEGINNER,
-      username: 'testuser',
-    };
     const result = await service.add(scoreEntry);
     expect(result.id).toEqual(scoreEntry.id);
+    const newCount = await prismaService.scoreEntry.count();
+    expect(actualCount).toBeLessThan(newCount);
+  });
 
+  it('not add new score entry other entry exist with same username and level and smaller score...', async () => {
+    const actualCount = await prismaService.scoreEntry.count();
+    scoreEntry.score = 20;
+    const result = await service.add(scoreEntry);
+    expect(result).toBeNull();
+    const newCount = await prismaService.scoreEntry.count();
+    expect(actualCount).toEqual(newCount);
+  });
+
+  it('add entry - other entry exist same username - other level...', async () => {
+    const actualCount = await prismaService.scoreEntry.count();
+    scoreEntry.level = ScoreEntryLevel.ADVAMCED;
+    const result = await service.add(scoreEntry);
+    expect(result).not.toBeNull();
     const newCount = await prismaService.scoreEntry.count();
     expect(actualCount).toBeLessThan(newCount);
   });

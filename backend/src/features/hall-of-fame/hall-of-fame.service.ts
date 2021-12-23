@@ -19,7 +19,12 @@ export class HallOfFameService {
     });
   }
 
-  async add(scoreEntry: ScoreEntryDto) {
+  async add(scoreEntry: ScoreEntryDto): Promise<ScoreEntryDto | null> {
+    const scoreListUserLevel = await this.prisma.scoreEntry.findMany({
+      where: { username: scoreEntry.username, score: { gt: scoreEntry.score } },
+    });
+    if (scoreListUserLevel.length > 0) return Promise.resolve(null);
+
     return await this.prisma.scoreEntry.create({ data: scoreEntry });
   }
 }
