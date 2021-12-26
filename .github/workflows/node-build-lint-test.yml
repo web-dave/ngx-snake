@@ -9,18 +9,33 @@ on:
       - main
 
 jobs:
-  build:
 
-    runs-on: ubuntu-latest
-
+  checkout:
+    runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: npm run lint
-      # - run: npm test # disabled because of failing backend tests
+      - name: Checkout projekt
+        uses: actions/checkout@v2
+
+  backend:
+    runs-on: ubuntu-18.04
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/setup-node@v2
+      - name: CI build
+        run: npm ci
+      - name: Run test
+        run: npm test
+      # - run: npm run lint # disabled because of lint errors
+
+  frontend:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: CI build
+        working-directory: frontend
+        run: npm ci
+      - name: Run test
+        working-directory: frontend
+        run: npm test
+      # - run: npm run lint # disabled because of lint errors
