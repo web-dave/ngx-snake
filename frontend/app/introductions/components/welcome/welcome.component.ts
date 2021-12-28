@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'snake-welcome',
@@ -7,6 +7,5 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent {
   title = 'Welcome';
-
   subTitle = 'Ngx Snake Game by WebDave and Co.';
 }

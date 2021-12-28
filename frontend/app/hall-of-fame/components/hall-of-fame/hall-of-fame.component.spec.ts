@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ScoreEntry } from '../../../core/models/score-entry';
 import { MaterialTestingModule } from '../../../core/testing/material-testing/material-testing.module';
 import { ScoreMocks } from '../../mocks/score-mocks';
@@ -34,7 +34,6 @@ describe('HallOfFameComponent', () => {
   it('should return score entries and fill levels array', (done: DoneCallback) => {
     const spy = jest.spyOn(hallOfFameService, 'getScores');
     hallOfFameService.getScores();
-    component.ngOnInit();
     component.scores$.subscribe((scores: ScoreEntry[]) => {
       expect(scores).toEqual(ScoreMocks);
       expect(component.levels.length).toBeGreaterThanOrEqual(3)
