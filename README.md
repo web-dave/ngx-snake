@@ -17,7 +17,8 @@ Snake game.
 
 
 ## DEV Setup
-* clean all: `npm run clean`
+* **INSTALL**: `npm run installer`
+* clean all: `npm run clean` // tut grad nicht weil er komischerweise rimraf im root sucht
 * build all: `npm run build`
 * test all: `npm run test`
 * lint all: `npm run lint`
