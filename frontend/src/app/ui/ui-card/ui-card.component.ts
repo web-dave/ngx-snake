@@ -1,11 +1,11 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'snake-ui-card',
   templateUrl: './ui-card.component.html',
   styleUrls: ['./ui-card.component.scss']
 })
-export class UiCardComponent implements OnInit {
+export class UiCardComponent {
 
   @Input()
   cardTitle = '';
@@ -13,9 +13,6 @@ export class UiCardComponent implements OnInit {
   @Input()
   cardSubtitle?: string;
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  constructor() {}
 
 }
