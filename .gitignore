@@ -1,19 +1,4 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
-
-# compiled output
-/dist
-/tmp
-/out-tsc
-# Only exists if Bazel was run
-/bazel-out
-
-# dependencies
-/node_modules
-
-# profiling files
-chrome-profiler-events*.json
-
-# IDEs and editors
+ IDEs and editors
 /.idea
 .project
 .classpath
@@ -21,8 +6,6 @@ chrome-profiler-events*.json
 *.launch
 .settings/
 *.sublime-workspace
-
-# IDE - VSCode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -30,23 +13,14 @@ chrome-profiler-events*.json
 !.vscode/extensions.json
 .history/*
 
-# Intellij Idea
-.idea
+# env
+*/.env
 
-# misc
-/.angular/cache
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-npm-debug.log
-yarn-error.log
-testem.log
-/typings
+# compiled
+node_modules
 
-# System Files
-.DS_Store
-Thumbs.db
+# docker
+docker/mountpoints
 
 
 # Backend
@@ -83,10 +57,17 @@ backend/example
 
 # tests
 backend/benchmarks/memory
+backend/dist
 backend/coverage
-backend/.nyc_output
-backend/packages/graphql
-backend/build/config\.gypi
 
-# local db mountpoint
-backend/docker/mountpoints
+# frontend
+frontend/dist
+frontend/coverage
+frontend/.angular
+.angular/**/*
+
+backend/docker/mountpoints/db-test/
+
+backend/docker/mountpoints/db/
+
+coverage/
