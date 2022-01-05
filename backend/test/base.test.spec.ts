@@ -17,5 +17,5 @@ describe('BaseTest', () => {
 
   it('test', () => {
     expect(true).toBeTruthy();
-  })
+  });
 });

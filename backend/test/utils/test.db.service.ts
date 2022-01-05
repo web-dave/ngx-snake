@@ -16,8 +16,7 @@ export class TestDbService {
   }
 
   public async clearSchema(): Promise<void> {
-    await this.prismaService
-      .$executeRaw`DROP TABLE IF EXISTS _prisma_migrations`;
+    await this.prismaService.$executeRaw`DROP TABLE IF EXISTS _prisma_migrations`;
     await this.prismaService.$executeRaw`DROP TABLE IF EXISTS ScoreEntry`;
     await this.prismaService.$executeRaw`DROP TABLE IF EXISTS User`;
   }
@@ -33,7 +32,7 @@ export class TestDbService {
 
   private execPromise(command) {
     return new Promise(function (resolve, reject) {
-      exec(command, (error, stdout, stderr) => {
+      exec(command, (error, stdout) => {
         if (error) {
           reject(error);
           return;

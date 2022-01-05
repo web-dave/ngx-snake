@@ -23,9 +23,7 @@ export class HallOfFameController {
     type: null,
     description: 'Add a new Hall-Of-Fame Entry',
   })
-  async addScoreEntry(
-    @Body() scoreEntry: ScoreEntryDto,
-  ): Promise<ScoreEntryDto> {
+  async addScoreEntry(@Body() scoreEntry: ScoreEntryDto): Promise<ScoreEntryDto> {
     return await this.service.add(scoreEntry);
   }
 }

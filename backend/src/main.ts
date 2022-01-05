@@ -1,16 +1,15 @@
-import {NestFactory} from '@nestjs/core';
-import {AppModule} from './app.module';
-import {Logger} from '@nestjs/common';
-import {ConfigService} from '@nestjs/config';
-import {DocumentBuilder, SwaggerModule} from '@nestjs/swagger';
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const logger: Logger = new Logger('bootstrap');
 
-  const app = await NestFactory.create(AppModule, {cors: true});
+  const app = await NestFactory.create(AppModule, { cors: true });
 
   const configService: ConfigService = app.get<ConfigService>(ConfigService);
-
 
   const config = new DocumentBuilder()
     .setTitle('ngx snake')
