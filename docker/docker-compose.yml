@@ -6,8 +6,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: dev
       MYSQL_DATABASE: ngx_snake
-      MYSQL_USER: snake
-      MYSQL_PASSWORD: snake
       LANG: C.UTF-8
     ports:
       - '3306:3306'
@@ -21,6 +19,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: dev
       MYSQL_DATABASE: ngx_snake
+      LANG: C.UTF-8
     ports:
       - '3307:3306'
     volumes:

@@ -34,6 +34,8 @@ Snake game.
 * test: `npm run be:test`
 * lint: `npm run be:lint`
 
+For the first setup you can find demo data in /backend/prisma/demo-data.sql 
+
 ### frontend
 * development: `npm run fe:watch`
 * clean: `npm run fe:clean`

@@ -66,8 +66,6 @@ frontend/coverage
 frontend/.angular
 .angular/**/*
 
-backend/docker/mountpoints/db-test/
-
-backend/docker/mountpoints/db/
+docker/mountpoints/**
 
 coverage/

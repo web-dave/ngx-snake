@@ -13,11 +13,11 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "lint": "eslint .",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\""
-    "test:create:db": "npx dotenv -e .env.test -- npx prisma migrate deploy"
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "test:create:db": "npx dotenv -e .env.test -- npx prisma migrate deploy",
     "test:e2e": "jest --config test/jest-e2e.json",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:watch": "jest --watch",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@nestjs/common": "^8.2.3",
