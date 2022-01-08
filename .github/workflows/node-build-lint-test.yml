@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v2
 
   backend:
-    runs-on: node-alpine
+    runs-on: ubuntu-18.04
     defaults:
       run:
         working-directory: backend
