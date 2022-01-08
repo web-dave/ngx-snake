@@ -13,7 +13,7 @@ services:
       - ./mountpoints/db/:/var/lib/mysql
 
   ngx-snake-db-test:
-    image: mariadb
+    image: mariadb:10.5.8
     restart: always
     container_name: ngx-snake-db-test
     environment:
