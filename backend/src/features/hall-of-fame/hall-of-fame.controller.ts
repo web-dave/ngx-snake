@@ -10,7 +10,7 @@ export class HallOfFameController {
   @Get()
   @ApiResponse({
     status: 200,
-    type: null,
+    type: ScoreEntryDto,
     description: 'Get all Hall-Of-Fame Entry',
   })
   async getList(): Promise<ScoreEntryDto[]> {
@@ -20,7 +20,7 @@ export class HallOfFameController {
   @Put()
   @ApiResponse({
     status: 200,
-    type: null,
+    type: ScoreEntryDto,
     description: 'Add a new Hall-Of-Fame Entry',
   })
   async addScoreEntry(@Body() scoreEntry: ScoreEntryDto): Promise<ScoreEntryDto> {

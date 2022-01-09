@@ -7,7 +7,7 @@ export class SystemController {
   @Get('/ping')
   @ApiResponse({
     status: 200,
-    type: null,
+    type: PingResponse,
     description: 'check endpoint for be if running',
   })
   async ping(): Promise<PingResponse> {
