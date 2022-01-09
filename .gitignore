@@ -21,6 +21,7 @@ node_modules
 
 # docker
 docker/mountpoints
+backend/test/mountpoints
 
 
 # Backend
