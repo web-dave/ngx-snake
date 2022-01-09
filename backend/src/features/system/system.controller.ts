@@ -1,11 +1,12 @@
 import { Controller, Get } from '@nestjs/common';
 import { PingResponse } from './model/ping.response';
-import { ApiResponse } from '@nestjs/swagger';
+import {ApiOkResponse, ApiTags} from '@nestjs/swagger';
 
-@Controller('/api/v1')
+@Controller('/api/v1/system')
+@ApiTags('system')
 export class SystemController {
   @Get('/ping')
-  @ApiResponse({
+  @ApiOkResponse({
     status: 200,
     type: PingResponse,
     description: 'check endpoint for be if running',

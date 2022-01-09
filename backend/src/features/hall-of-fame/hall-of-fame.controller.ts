@@ -1,9 +1,10 @@
 import { Body, Controller, Get, Put } from '@nestjs/common';
 import { HallOfFameService } from './hall-of-fame.service';
 import { ScoreEntryDto } from './model/score.entry.dto';
-import { ApiResponse } from '@nestjs/swagger';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('api/v1/hall-of-fame')
+@ApiTags('hall-of-fame')
 export class HallOfFameController {
   constructor(private service: HallOfFameService) {}
 
