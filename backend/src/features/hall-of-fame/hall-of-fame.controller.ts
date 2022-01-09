@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Put } from '@nestjs/common';
 import { HallOfFameService } from './hall-of-fame.service';
 import { ScoreEntryDto } from './model/score.entry.dto';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import {ApiCreatedResponse, ApiOkResponse, ApiResponse, ApiTags} from '@nestjs/swagger';
 
 @Controller('api/v1/hall-of-fame')
 @ApiTags('hall-of-fame')
@@ -9,8 +9,7 @@ export class HallOfFameController {
   constructor(private service: HallOfFameService) {}
 
   @Get()
-  @ApiResponse({
-    status: 200,
+  @ApiOkResponse({
     type: ScoreEntryDto,
     description: 'Get all Hall-Of-Fame Entry',
   })
@@ -19,8 +18,7 @@ export class HallOfFameController {
   }
 
   @Put()
-  @ApiResponse({
-    status: 200,
+  @ApiCreatedResponse({
     type: ScoreEntryDto,
     description: 'Add a new Hall-Of-Fame Entry',
   })

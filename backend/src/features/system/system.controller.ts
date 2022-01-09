@@ -7,7 +7,6 @@ import {ApiOkResponse, ApiTags} from '@nestjs/swagger';
 export class SystemController {
   @Get('/ping')
   @ApiOkResponse({
-    status: 200,
     type: PingResponse,
     description: 'check endpoint for be if running',
   })
