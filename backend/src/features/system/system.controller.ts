@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { PingResponse } from './model/ping.response';
-import {ApiOkResponse, ApiTags} from '@nestjs/swagger';
+import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('/api/v1/system')
 @ApiTags('system')

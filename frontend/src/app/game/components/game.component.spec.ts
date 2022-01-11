@@ -8,9 +8,9 @@ describe('GameComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GameComponent ]
+      declarations: [GameComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -28,7 +28,14 @@ describe('GameComponent', () => {
     const drawFood = jest.spyOn(component, 'drawFood');
     const drawSnake = jest.spyOn(component, 'drawSnake');
 
-    component.ctx = {fillStyle: '', fillRect(x: number, y: number, w: number, h: number) {}} as CanvasRenderingContext2D;
+    component.ctx = {
+      fillStyle: '',
+      fillRect(x: number, y: number, w: number, h: number) {},
+      beginPath() {},
+      arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, counterclockwise?: boolean) {},
+      stroke() {},
+      fill() {}
+    } as CanvasRenderingContext2D;
     component.draw();
 
     expect(drawBG).toHaveBeenCalledTimes(1);
