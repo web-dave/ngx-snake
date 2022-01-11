@@ -1,4 +1,5 @@
 services:
+
   ngx-snake-db:
     image: mariadb:10.5.8
     restart: always
@@ -9,5 +10,3 @@ services:
       LANG: C.UTF-8
     ports:
       - '3306:3306'
-    volumes:
-      - ./mountpoints/db/:/var/lib/mysql

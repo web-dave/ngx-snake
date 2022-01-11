@@ -1,0 +1,14 @@
+services:
+
+  ngx-snake-db:
+    image: mariadb:10.5.8
+    restart: always
+    container_name: ngx-snake-db
+    environment:
+      MYSQL_ROOT_PASSWORD: dev
+      MYSQL_DATABASE: ngx_snake
+      MYSQL_USER: snake
+      MYSQL_PASSWORD: snake
+      LANG: C.UTF-8
+    ports:
+      - '3307:3306'

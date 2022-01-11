@@ -1,0 +1,18 @@
+server_tokens off; # for security reasons you should not show your nginx version in the response headers
+
+server {
+
+	  listen ${NGINX_PORT};
+	  server_name localhost;
+
+    # docker workaround for not-running containers
+    # use docker gateway ip for better dns resolving
+    resolver 127.0.0.11 ipv6=off;
+
+	  location / {
+		    root /opt/app;
+		    index index.html;
+		    try_files $uri $uri/ /index.html;
+	  }
+
+}

@@ -1,0 +1,39 @@
+services:
+
+  ngx-snake-fe:
+    image: nginx:1.21.5-alpine
+    container_name: ngx-snake-fe
+    depends_on:
+      - ngx-snake-be
+    environment:
+      NGINX_PORT: 80
+    ports:
+      - '80:80'
+    volumes:
+      - ./nginx:/etc/nginx/templates
+      - ../../frontend/dist:/opt/app
+    networks:
+      - ngx-snake
+
+  # TODO backend noch einbauen
+
+  ngx-snake-db:
+    image: mariadb:10.5.8
+    restart: always
+    container_name: ngx-snake-db
+    environment:
+      MYSQL_ROOT_PASSWORD: dev
+      MYSQL_DATABASE: ngx_snake
+      MYSQL_USER: snake
+      MYSQL_PASSWORD: snake
+      LANG: C.UTF-8
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./mysql-data/:/var/lib/mysql
+    networks:
+      - ngx-snake
+
+networks:
+  ngx-snake:
+    name: ngx-snake
