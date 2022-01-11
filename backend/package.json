@@ -13,7 +13,11 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "lint": "eslint .",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\""
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "test:create:db": "npx dotenv -e .env.test -- npx prisma migrate deploy",
+    "test:e2e": "jest --config test/jest-e2e.json",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@nestjs/common": "^8.2.3",
@@ -22,6 +26,8 @@
     "@nestjs/platform-express": "^8.2.3",
     "@nestjs/swagger": "^5.1.5",
     "@prisma/client": "^3.7.0",
+    "dotenv": "^10.0.0",
+    "dotenv-cli": "^4.1.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.4.0",
@@ -57,7 +63,7 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
+    "roots": ["src", "test"],
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
@@ -66,6 +72,7 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "setupFiles": ["./test/test-setup.ts"]
   }
 }

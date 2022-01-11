@@ -1,13 +1,13 @@
 services:
-  ngx-snake-db:
+ngx-snake-db-test:
     image: mariadb:10.5.8
     restart: always
-    container_name: ngx-snake-db
+    container_name: ngx-snake-db-test
     environment:
       MYSQL_ROOT_PASSWORD: dev
       MYSQL_DATABASE: ngx_snake
       LANG: C.UTF-8
     ports:
-      - '3306:3306'
+      - '3307:3306'
     volumes:
-      - ./mountpoints/db/:/var/lib/mysql
+      - ./mountpoints/db-test/:/var/lib/mysql

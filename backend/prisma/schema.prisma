@@ -10,8 +10,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model ScoreEntry {
   id                                  String                        @id @default(uuid())
-  email                               String                        @unique
-  name                                String?
+  date                                DateTime
+  level                               ScoreEntryLevel               @default(BEGINNER)
+  score                               Int
+  username                            String
+}
+
+enum ScoreEntryLevel {
+  BEGINNER
+  ADVAMCED
+  EXPERT
 }

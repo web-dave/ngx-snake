@@ -1,3 +1,6 @@
-export interface PingResponse {
-  timestamp: number;
+import { ApiProperty } from '@nestjs/swagger';
+
+export class PingResponse {
+  @ApiProperty()
+  pong: number;
 }

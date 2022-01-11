@@ -17,7 +17,7 @@ describe('SystemController', () => {
   describe('basic', () => {
     it('return a timestamp', async () => {
       const resp: PingResponse = await systemController.ping();
-      expect(typeof resp.timestamp).toBe('number');
+      expect(typeof resp.pong).toBe('number');
     });
   });
 });
