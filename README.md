@@ -18,7 +18,7 @@ Snake game.
 
 ## DEV Setup
 * **INSTALL**: `npm run installer`
-* clean all: `npm run clean` // tut grad nicht weil er komischerweise rimraf im root sucht
+* clean all: `npm run clean`
 * build all: `npm run build`
 * test all: `npm run test`
 * lint all: `npm run lint`
@@ -32,6 +32,7 @@ Snake game.
 * stop dev stack (db, backend, frontend in docker): `npm run docker:dev:down`
 
 ### backend
+* first start - generate prisma: `npm run be:prisma`
 * development: `npm run be:watch`
 * clean: `npm run be:clean`
 * build: `npm run be:build`
