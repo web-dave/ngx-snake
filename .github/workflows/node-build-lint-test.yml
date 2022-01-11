@@ -10,32 +10,17 @@ on:
 
 jobs:
 
-  checkout:
-    runs-on: ubuntu-18.04
+  build_lint_test:
+
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout projekt
+      - name: Checkout
         uses: actions/checkout@v2
-
-  backend:
-    runs-on: ubuntu-18.04
-    defaults:
-      run:
-        working-directory: backend
-    steps:
-      - uses: actions/setup-node@v2
-      - name: CI build
-        run: npm ci
-      - name: Run test
-        run: npm test
-      # - run: npm run lint # disabled because of lint errors
-
-  frontend:
-    runs-on: ubuntu-18.04
-    steps:
-      - name: CI build
-        working-directory: frontend
-        run: npm ci
-      - name: Run test
-        working-directory: frontend
-        run: npm test
-      # - run: npm run lint # disabled because of lint errors
+      - name: Setup Nodejs
+        uses: actions/setup-node@v2
+      - name: Run CI build
+        run: npm run ci:build
+      - name: Lint code
+        run: npm run lint
+      - name: Test code
+        run: npm run test
