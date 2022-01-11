@@ -23,4 +23,4 @@ jobs:
       - name: Lint code
         run: npm run lint
       - name: Test code
-        run: npm run test
+        run: npm run fe:test # be:test only works with database :(
