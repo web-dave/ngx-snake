@@ -24,8 +24,12 @@ Snake game.
 * lint all: `npm run lint`
 
 ### docker
-* start all docker container: `npm run docker:up`
-* stop all docker container: `npm run docker:down`
+* start local db docker container: `npm run docker:local:up`
+* stop local db docker container: `npm run docker:local:down`
+* start local db docker container for tests: `npm run docker:test:up`
+* stop local db docker container for tests: `npm run docker:test:down`
+* start dev stack (db, backend, frontend in docker): `npm run docker:dev:up`
+* stop dev stack (db, backend, frontend in docker): `npm run docker:dev:down`
 
 ### backend
 * development: `npm run be:watch`

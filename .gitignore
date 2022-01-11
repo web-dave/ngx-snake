@@ -1,4 +1,4 @@
- IDEs and editors
+# IDEs and editors
 /.idea
 .project
 .classpath
@@ -12,61 +12,28 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 .history/*
+.DS_Store
 
 # env
 */.env
+*/.env.test
 
 # compiled
 node_modules
 
 # docker
-docker/mountpoints
-backend/test/mountpoints
+mountpoints
+mysql-data
 
-
-# Backend
-
-backend/.env
-backend/.env.test
-
-# dependencies
-backend/node_modules/
-
-# IDE
-backend/.idea
-backend/.awcache
-backend/.vscode
-backend/*.code-workspace
-
-# bundle
-backend/packages/**/*.d.ts
-backend/packages/**/*.js
-
-# misc
-backend/.DS_Store
-backend/lerna-debug.log
-backend/npm-debug.log
-backend/yarn-error.log
-backend/**/npm-debug.log
-backend/packages/**/.npmignore
-backend/packages/**/LICENSE
-
-# example
-backend/quick-start
-backend/example_dist
-backend/example
-
-# tests
-backend/benchmarks/memory
+# backend
 backend/dist
 backend/coverage
+backend/packages/**/*.d.ts
+backend/packages/**/*.js
+backend/packages/**/.npmignore
+backend/packages/**/LICENSE
 
 # frontend
 frontend/dist
 frontend/coverage
 frontend/.angular
-.angular/**/*
-
-docker/mountpoints/**
-
-coverage/
