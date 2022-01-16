@@ -27,7 +27,8 @@
     "fe:watch": "cd frontend && npm run watch",
     "fe:build": "cd frontend && npm run build",
     "fe:test": "cd frontend && npm run test",
-    "fe:lint": "cd frontend && npm run lint"
+    "fe:lint": "cd frontend && npm run lint",
+    "fe:gen-service": "cd frontend && npm run gen-service"
   },
   "private": true
 }

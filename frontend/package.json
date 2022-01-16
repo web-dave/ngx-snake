@@ -6,7 +6,8 @@
     "watch": "ng serve",
     "build": "ng build --configuration development",
     "test": "ng test",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "gen-service": "ng-openapi-gen --input http://localhost:3000/api-json --output src/app/api"
   },
   "private": true,
   "dependencies": {
@@ -43,6 +44,7 @@
     "eslint-plugin-unused-imports": "^2.0.0",
     "jest": "^27.4.5",
     "jest-preset-angular": "^11.0.1",
+    "ng-openapi-gen": "^0.20.0",
     "typescript": "~4.4.3",
     "rimraf": "^3.0.2"
   }

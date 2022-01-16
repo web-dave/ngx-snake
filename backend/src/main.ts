@@ -1,8 +1,8 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const logger: Logger = new Logger('bootstrap');
@@ -19,7 +19,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('ngx snake')
     .setDescription(
-      'The ngx snake API description<br>Get api-json file from here: <a target="_blank" href="/api-json">http(s)://<host>(:<port>)/api-json</a>',
+      'The ngx snake API description<br>Get snake-api.json file from here: <a target="_blank" href="/snake-api.json">http(s)://<host>(:<port>)/snake-api.json</a>',
     )
     .setVersion('1.0')
     .build();

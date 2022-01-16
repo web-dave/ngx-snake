@@ -63,7 +63,10 @@
       "json",
       "ts"
     ],
-    "roots": ["src", "test"],
+    "roots": [
+      "src",
+      "test"
+    ],
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
@@ -73,6 +76,8 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
-    "setupFiles": ["./test/test-setup.ts"]
+    "setupFiles": [
+      "./test/test-setup.ts"
+    ]
   }
 }

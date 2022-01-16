@@ -1,5 +1,5 @@
-import { ScoreEntryLevel } from '@prisma/client';
 import { ApiProperty } from '@nestjs/swagger';
+import { ScoreEntryLevel } from '@prisma/client';
 
 export class ScoreEntryDto {
   @ApiProperty()
