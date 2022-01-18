@@ -37,3 +37,6 @@ backend/packages/**/LICENSE
 frontend/dist
 frontend/coverage
 frontend/.angular
+/coverage/
+/.angular/
+/dist/

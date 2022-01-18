@@ -48,6 +48,10 @@ For the first setup you can find demo data in /backend/prisma/demo-data.sql
 * test: `npm run fe:test`
 * lint: `npm run fe:lint`
 
+### Generate Frontend Service's
+*We use [ng-openapi-gen](https://github.com/cyclosproject/ng-openapi-gen#ng-openapi-gen-an-openapi-3-code-generator-for-angular) to generator service code for Angular*
+* generate: `npm run fe:gen-service`
+
 
 ## work with us.
 - fork

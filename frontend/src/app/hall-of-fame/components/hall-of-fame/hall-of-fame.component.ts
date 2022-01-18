@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ScoreEntry } from '../../../core/models/score-entry';
+import { ScoreEntryDto } from '../../../api/models/score-entry-dto';
+import { HallOfFameService } from '../../../api/services/hall-of-fame.service';
 import { SortDirection } from '../../pipes/sort-entries-by-score.pipe';
-import { HallOfFameService } from '../../services/hall-of-fame.service';
 
 @Component({
   selector: 'snake-hall-of-fame',
@@ -11,19 +11,19 @@ import { HallOfFameService } from '../../services/hall-of-fame.service';
   styleUrls: ['./hall-of-fame.component.scss']
 })
 export class HallOfFameComponent {
-  levels: string[] = [];
+  levels: string[]  = [];
 
   sortDirection = SortDirection;
 
-  scores$: Observable<ScoreEntry[]> = this.hallOfFameService.gameScores$
+  scores$: Observable<any> = this.hallOfFameService.hallOfFameControllerGetList()
     .pipe(
-      map((scores: ScoreEntry[]) => {
-        this.levels = [...new Set(scores.map((score: ScoreEntry) => score.level))];
+      map((scores: ScoreEntryDto[]) => {
+        this.levels = [...new Set(scores.map((score: ScoreEntryDto) => score.level))];
         return scores;
       })
     );
 
-  constructor(private hallOfFameService: HallOfFameService) {
+  constructor(private hallOfFameService:HallOfFameService) {
   }
 
 }

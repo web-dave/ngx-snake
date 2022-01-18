@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Put } from '@nestjs/common';
+import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { HallOfFameService } from './hall-of-fame.service';
 import { ScoreEntryDto } from './model/score.entry.dto';
-import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('api/v1/hall-of-fame')
 @ApiTags('hall-of-fame')
@@ -12,6 +12,7 @@ export class HallOfFameController {
   @ApiOkResponse({
     type: ScoreEntryDto,
     description: 'Get all Hall-Of-Fame Entry',
+    isArray: true,
   })
   async getList(): Promise<ScoreEntryDto[]> {
     return await this.service.getList();
