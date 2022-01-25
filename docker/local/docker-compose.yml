@@ -16,5 +16,7 @@ services:
     environment:
       ADMINER_DEFAULT_SERVER: ngx-snake-db
       restart: always
+    volumes:
+      - ./adminer/adminer.css:/var/www/html/adminer.css
     ports:
       - "8080:8080"
