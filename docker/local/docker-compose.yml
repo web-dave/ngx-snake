@@ -1,5 +1,4 @@
 services:
-
   ngx-snake-db:
     image: mariadb:10.5.8
     restart: always
@@ -9,4 +8,13 @@ services:
       MYSQL_DATABASE: ngx_snake
       LANG: C.UTF-8
     ports:
-      - '3306:3306'
+      - "3306:3306"
+
+  adminer:
+    image: adminer:4.8.1
+    container_name: adminer
+    environment:
+      ADMINER_DEFAULT_SERVER: ngx-snake-db
+      restart: always
+    ports:
+      - "8080:8080"
