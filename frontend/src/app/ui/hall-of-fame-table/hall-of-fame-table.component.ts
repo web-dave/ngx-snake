@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ScoreEntry } from '../../core/models/score-entry';
+import { ScoreEntryDto } from '../../api/models/score-entry-dto';
 
 @Component({
   selector: 'snake-hall-of-fame-table',
@@ -9,7 +9,7 @@ import { ScoreEntry } from '../../core/models/score-entry';
 export class HallOfFameTableComponent {
 
   @Input()
-  scoreEntries: ScoreEntry[] = [];
+  scoreEntries: ScoreEntryDto[] = [];
 
   displayedColumns: string[] = ['username', 'score', 'date'];
 

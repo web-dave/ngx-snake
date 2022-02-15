@@ -60,7 +60,7 @@ describe('HallOfFameService', () => {
 
   it('add entry - other entry exist same username - other level...', async () => {
     const actualCount = await prismaService.scoreEntry.count();
-    scoreEntry.level = ScoreEntryLevel.ADVAMCED;
+    scoreEntry.level = ScoreEntryLevel.ADVANCED;
     const result = await service.add(scoreEntry);
     expect(result).not.toBeNull();
     const newCount = await prismaService.scoreEntry.count();
