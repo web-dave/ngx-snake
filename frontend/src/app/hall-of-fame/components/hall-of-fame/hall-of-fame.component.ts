@@ -11,11 +11,11 @@ import { SortDirection } from '../../pipes/sort-entries-by-score.pipe';
   styleUrls: ['./hall-of-fame.component.scss']
 })
 export class HallOfFameComponent {
-  levels: string[]  = [];
+  levels: string[] = [];
 
   sortDirection = SortDirection;
 
-  scores$: Observable<any> = this.hallOfFameService.hallOfFameControllerGetList()
+  scores$: Observable<ScoreEntryDto[]> = this.hallOfFameService.hallOfFameControllerGetList()
     .pipe(
       map((scores: ScoreEntryDto[]) => {
         this.levels = [...new Set(scores.map((score: ScoreEntryDto) => score.level))];
@@ -23,7 +23,7 @@ export class HallOfFameComponent {
       })
     );
 
-  constructor(private hallOfFameService:HallOfFameService) {
+  constructor(private hallOfFameService: HallOfFameService) {
   }
 
 }

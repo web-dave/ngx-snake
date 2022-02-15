@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ScoreEntry } from '../../core/models/score-entry';
+import { ScoreEntryDto } from '../../api/models/score-entry-dto';
 
 export enum SortDirection {
   ASC = 'asc',
@@ -10,9 +10,9 @@ export enum SortDirection {
   name: 'sortEntriesByScore'
 })
 export class SortEntriesByScorePipe implements PipeTransform {
-  transform(scoreEntries: ScoreEntry[], direction: SortDirection): ScoreEntry[] {
+  transform(scoreEntries: ScoreEntryDto[], direction: SortDirection): ScoreEntryDto[] {
     return direction === SortDirection.DESC ?
-      scoreEntries.sort((scoreOne: ScoreEntry, scoreTwo: ScoreEntry) => scoreOne.score > scoreTwo.score ? -1 : 1) :
-      scoreEntries.sort((scoreOne: ScoreEntry, scoreTwo: ScoreEntry) => scoreOne.score < scoreTwo.score ? -1 : 1);
+      scoreEntries.sort((scoreOne: ScoreEntryDto, scoreTwo: ScoreEntryDto) => scoreOne.score > scoreTwo.score ? -1 : 1) :
+      scoreEntries.sort((scoreOne: ScoreEntryDto, scoreTwo: ScoreEntryDto) => scoreOne.score < scoreTwo.score ? -1 : 1);
   }
 }

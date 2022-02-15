@@ -20,6 +20,6 @@ model ScoreEntry {
 
 enum ScoreEntryLevel {
   BEGINNER
-  ADVAMCED
+  ADVANCED
   EXPERT
 }
