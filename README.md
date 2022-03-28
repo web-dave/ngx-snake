@@ -1,22 +1,21 @@
 # NgxSnake
 
-This is a community project.
-Snake game.
-
+This is a community project. Snake game.
 
 ## Techstack
+
 - angular
 - NestJs, Prisma
 - rxjs
 
-
 ## Requirements
+
 - node
 - npm
 - docker
 
-
 ## DEV Setup
+
 * **INSTALL**: `npm run installer`
 * clean all: `npm run clean`
 * build all: `npm run build`
@@ -24,6 +23,7 @@ Snake game.
 * lint all: `npm run lint`
 
 ### docker
+
 * start local db docker container: `npm run docker:local:up`
 * stop local db docker container: `npm run docker:local:down`
 * start local db docker container for tests: `npm run docker:test:up`
@@ -32,6 +32,7 @@ Snake game.
 * stop dev stack (db, backend, frontend in docker): `npm run docker:dev:down`
 
 ### backend
+
 * first start - generate prisma: `npm run be:prisma`
 * development: `npm run be:watch`
 * clean: `npm run be:clean`
@@ -39,20 +40,54 @@ Snake game.
 * test: `npm run be:test`
 * lint: `npm run be:lint`
 
-For the first setup you can find demo data in /backend/prisma/demo-data.sql 
+For the first setup you can find demo data in /backend/prisma/demo-data.sql
 
 ### frontend
+
 * development: `npm run fe:watch`
 * clean: `npm run fe:clean`
 * build: `npm run fe:build`
 * test: `npm run fe:test`
 * lint: `npm run fe:lint`
-
+---
 ### Generate Frontend Service's
-*We use [ng-openapi-gen](https://github.com/cyclosproject/ng-openapi-gen#ng-openapi-gen-an-openapi-3-code-generator-for-angular) to generator service code for Angular*
+
+*We use [ng-openapi-gen](https://github.com/cyclosproject/ng-openapi-gen#ng-openapi-gen-an-openapi-3-code-generator-for-angular) to
+generator service code for Angular*
+
 * generate: `npm run fe:gen-service`
+---
+
+### Identity provider Auth0
 
 
+In this project, Auth0 is used as Identity Provider. 
+Click on this [link](https://auth0.com/docs/quickstart/spa/angular/01-login)
+to see how quick and easy you 
+can use Auth0 in your project.
+
+When you have finished all configurations on Auth0, 
+create a dotenv file (.env) in the frontend project and 
+for all the necessary data we will enter:
+
+```dotenv
+API_URL=http://localhost:3000
+DOMAIN=DOMAIN
+CLIENT_ID=CLIENT_ID
+AUDIENCE=AUDIENCE
+IS_PRODUCTION=false/true
+```
+
+To complete the configuration, then run the following command
+
+```bash
+  npm run config
+```
+  
+#### Backend is coming soon...
+
+---
 ## work with us.
+
 - fork
 - send a PR

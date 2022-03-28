@@ -1,0 +1,6 @@
+<ng-container *ngIf="(auth.isAuthenticated$ | async) === false; else logoutBtn">
+    <snake-login-button></snake-login-button>
+</ng-container>
+<ng-template #logoutBtn>
+    <snake-logout-button></snake-logout-button>
+</ng-template>
