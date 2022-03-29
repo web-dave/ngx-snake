@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Put } from '@nestjs/common';
+import { Body, Controller, Get, Put, Req } from '@nestjs/common';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { HallOfFameService } from './hall-of-fame.service';
 import { ScoreEntryDto } from './model/score.entry.dto';
@@ -23,7 +23,7 @@ export class HallOfFameController {
     type: ScoreEntryDto,
     description: 'Add a new Hall-Of-Fame Entry',
   })
-  async addScoreEntry(@Body() scoreEntry: ScoreEntryDto): Promise<ScoreEntryDto> {
-    return await this.service.add(scoreEntry);
+  async addScoreEntry(@Body() scoreEntry: ScoreEntryDto, @Req() req): Promise<ScoreEntryDto> {
+    return await this.service.add(scoreEntry, req?.user?.sub);
   }
 }
