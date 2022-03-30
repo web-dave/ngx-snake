@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ScoreEntry } from '../../core/models/score-entry';
+import { ScoreEntryDto } from '../../api/models/score-entry-dto';
 
 @Pipe({
   name: 'levelScores'
 })
 export class LevelScoresPipe implements PipeTransform {
-  transform(scoreEntries: ScoreEntry[], level: string): ScoreEntry[] {
-    return scoreEntries.filter((score: ScoreEntry) => score.level === level);
+  transform(scoreEntries: ScoreEntryDto[], level: string): ScoreEntryDto[] {
+    return scoreEntries.filter((score: ScoreEntryDto) => score.level === level);
   }
 }

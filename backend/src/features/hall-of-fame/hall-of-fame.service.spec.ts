@@ -1,10 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { HallOfFameService } from './hall-of-fame.service';
+import { ScoreEntryLevel } from '@prisma/client';
+import { TestDataUtil } from '../../../test/utils/test.data.util';
 import { TestDbService } from '../../../test/utils/test.db.service';
 import { PrismaService } from '../../prisma.service';
-import { ScoreEntryLevel } from '@prisma/client';
+import { HallOfFameService } from './hall-of-fame.service';
 import { ScoreEntryDto } from './model/score.entry.dto';
-import { TestDataUtil } from '../../../test/utils/test.data.util';
 
 const testDbService = new TestDbService();
 
@@ -29,6 +29,7 @@ describe('HallOfFameService', () => {
       date: TestDataUtil.getDate(),
       level: ScoreEntryLevel.BEGINNER,
       username: 'tscarrisbrick1',
+      userSub: 'tscarrisbrick1',
     };
   });
 
@@ -43,7 +44,7 @@ describe('HallOfFameService', () => {
 
   it('can add new ScoreEntry...', async () => {
     const actualCount = await prismaService.scoreEntry.count();
-    const result = await service.add(scoreEntry);
+    const result = await service.add(scoreEntry, 'tscarrisbrick1');
     expect(result.id).toEqual(scoreEntry.id);
     const newCount = await prismaService.scoreEntry.count();
     expect(actualCount).toBeLessThan(newCount);
@@ -52,7 +53,7 @@ describe('HallOfFameService', () => {
   it('not add new score entry other entry exist with same username and level and smaller score...', async () => {
     const actualCount = await prismaService.scoreEntry.count();
     scoreEntry.score = 20;
-    const result = await service.add(scoreEntry);
+    const result = await service.add(scoreEntry, 'tscarrisbrick1');
     expect(result).toBeNull();
     const newCount = await prismaService.scoreEntry.count();
     expect(actualCount).toEqual(newCount);
@@ -61,7 +62,7 @@ describe('HallOfFameService', () => {
   it('add entry - other entry exist same username - other level...', async () => {
     const actualCount = await prismaService.scoreEntry.count();
     scoreEntry.level = ScoreEntryLevel.ADVAMCED;
-    const result = await service.add(scoreEntry);
+    const result = await service.add(scoreEntry, 'tscarrisbrick1');
     expect(result).not.toBeNull();
     const newCount = await prismaService.scoreEntry.count();
     expect(actualCount).toBeLessThan(newCount);

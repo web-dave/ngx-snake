@@ -12,4 +12,6 @@ export class ScoreEntryDto {
   score: number;
   @ApiProperty()
   username: string;
+  @ApiProperty()
+  userSub: string;
 }

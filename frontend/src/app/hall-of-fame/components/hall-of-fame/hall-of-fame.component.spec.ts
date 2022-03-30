@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
+import { ScoreEntryDto } from '../../../api/models/score-entry-dto';
 import { HallOfFameService } from '../../../api/services/hall-of-fame.service';
-import { ScoreEntry } from '../../../core/models/score-entry';
 import { MaterialTestingModule } from '../../../core/testing/material-testing/material-testing.module';
 import { ScoreMocks } from '../../mocks/score-mocks';
 
@@ -35,7 +35,7 @@ xdescribe('HallOfFameComponent', () => {
   it('should return score entries and fill levels array', (done: DoneCallback) => {
     const spy = jest.spyOn(hallOfFameService, 'hallOfFameControllerGetList');
     hallOfFameService.hallOfFameControllerGetList = jest.fn().mockReturnValue(of(ScoreMocks));
-    component.scores$.subscribe((scores: ScoreEntry[]) => {
+    component.scores$.subscribe((scores: ScoreEntryDto[]) => {
       expect(scores).toEqual(ScoreMocks);
       expect(component.levels.length).toBeGreaterThanOrEqual(3);
       expect(spy).toHaveBeenCalledTimes(1);

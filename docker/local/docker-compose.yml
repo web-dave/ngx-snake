@@ -9,4 +9,15 @@ services:
       MYSQL_DATABASE: ngx_snake
       LANG: C.UTF-8
     ports:
-      - '3306:3306'
+      - "3306:3306"
+
+  adminer:
+    image: adminer:4.8.1
+    container_name: adminer
+    environment:
+      ADMINER_DEFAULT_SERVER: ngx-snake-db
+      restart: always
+    volumes:
+      - ./adminer/adminer.css:/var/www/html/adminer.css
+    ports:
+      - "8080:8080"

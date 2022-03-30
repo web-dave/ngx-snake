@@ -16,10 +16,11 @@ model ScoreEntry {
   level                               ScoreEntryLevel               @default(BEGINNER)
   score                               Int
   username                            String
+  userSub                            String
 }
 
 enum ScoreEntryLevel {
   BEGINNER
-  ADVAMCED
+  ADVANCED
   EXPERT
 }

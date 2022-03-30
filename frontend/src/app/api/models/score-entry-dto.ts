@@ -5,5 +5,6 @@ export interface ScoreEntryDto {
   id: string;
   level: string;
   score: number;
+  userSub: string;
   username: string;
 }
