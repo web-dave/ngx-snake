@@ -12,7 +12,7 @@ Snake game.
 
 ## Requirements
 - node
-- npm
+- npm (version ^7.24.2)
 - npx
 - docker
 
