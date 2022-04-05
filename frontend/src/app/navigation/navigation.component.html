@@ -1,30 +1,19 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer
-               class="sidenav"
-               fixedInViewport
-               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-               [mode]="(isHandset$ | async) ? 'over' : 'side'"
-               [opened]="(isHandset$ | async) === false">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a href="#"
-         mat-list-item
-         routerLinkActive="active"
-         routerLink="/intro">Home
-      </a>
+      <a href="#" mat-list-item routerLinkActive="active" routerLink="/intro">Home </a>
 
-      <a href="#"
-         mat-list-item
-         routerLinkActive="active"
-         routerLink="/game">Game
-      </a>
+      <a href="#" mat-list-item routerLinkActive="active" routerLink="/game">Game </a>
 
-      <a href="#"
-         mat-list-item
-         routerLinkActive="active"
-         routerLink="/hof">Hall of Fame
-      </a>
-
+      <a href="#" mat-list-item routerLinkActive="active" routerLink="/hof">Hall of Fame </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -34,7 +23,8 @@
         aria-label="Toggle sidenav"
         mat-icon-button
         type="button"
-        (click)="drawer.toggle()">
+        (click)="drawer.toggle()"
+      >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>ngx-snake</span>
