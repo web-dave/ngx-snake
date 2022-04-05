@@ -65,3 +65,4 @@ Snake game.
 ## work with us.
 - fork
 - send a PR
+- have fun
