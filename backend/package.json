@@ -81,5 +81,8 @@
     "setupFiles": [
       "./test/test-setup.ts"
     ]
+  },
+  "engines": {
+    "npm": "^7.24.2"
   }
 }
