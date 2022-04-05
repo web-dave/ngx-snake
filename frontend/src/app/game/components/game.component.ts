@@ -1,5 +1,8 @@
-import { AfterViewInit, Component, ElementRef, Input, ViewChild } from "@angular/core";
-import { filter, fromEvent, interval, map, tap } from "rxjs";
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { AuthService, User } from "@auth0/auth0-angular";
+import { filter, fromEvent, interval, map, Subject, Subscription, take, takeUntil, tap } from "rxjs";
+import { HallOfFameService } from "../../api/services/hall-of-fame.service";
+import { SkillLevel } from "../../core/enums/skill-level.enums";
 
 type IDirection = "right" | "left" | "up" | "down";
 type IPosition = { x: number; y: number };
@@ -9,23 +12,24 @@ type IPosition = { x: number; y: number };
   templateUrl: "./game.component.html",
   styleUrls: ["./game.component.scss"],
 })
-export class GameComponent implements AfterViewInit {
-  @ViewChild("canvas") foo!: ElementRef<HTMLCanvasElement>;
-  @ViewChild("gamespace") space!: ElementRef<HTMLDivElement>;
-  width = 300;
-  height = 300;
-
-  canvas!: HTMLCanvasElement;
-  direction: IDirection = "right";
-  ctx!: CanvasRenderingContext2D;
-  food: IPosition = { x: 5, y: 9 };
+export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() rows = 15;
 
   @Input() cols = 15;
 
-  pxlSize = 20;
+  @ViewChild("canvas") foo!: ElementRef<HTMLCanvasElement>;
+
+  canvas!: HTMLCanvasElement;
+
+  ctx!: CanvasRenderingContext2D;
+
+  direction: IDirection = "right";
+
+  food: IPosition = { x: 5, y: 9 };
 
   gameOver = false;
+
+  pxlSize = 20;
 
   snake: IPosition[] = [
     {
@@ -34,9 +38,32 @@ export class GameComponent implements AfterViewInit {
     },
   ];
 
-  constructor() {}
+  user?: User;
+
+  destroy$: Subject<void> = new Subject<void>();
+
+  killSnake$?: Subscription;
+
+  constructor(private authService: AuthService, private hallOfFameService: HallOfFameService) {}
+
+  ngOnInit(): void {
+    this.user = this.authService.user$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((user: User | undefined | null) => (this.user = { ...user }));
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+    this.onKillSnake();
+  }
 
   ngAfterViewInit(): void {
+    this.startGame();
+  }
+
+  startGame() {
+    this.snake.length = 1;
     this.getCtx();
     fromEvent<KeyboardEvent>(document.body, "keyup")
       .pipe(
@@ -53,8 +80,13 @@ export class GameComponent implements AfterViewInit {
         console.log(code);
         this.direction = code;
       });
+    if (!this.gameOver) {
+      this.drawGame();
+    }
+  }
 
-    interval(300).subscribe(() => this.draw());
+  drawGame() {
+    this.killSnake$ = interval(300).subscribe(() => this.draw());
   }
 
   moveSnake() {
@@ -95,8 +127,6 @@ export class GameComponent implements AfterViewInit {
     if (pos.x >= this.cols) {
       pos.x = 0;
     }
-    // console.log(pos);
-
     return pos;
   }
 
@@ -124,17 +154,6 @@ export class GameComponent implements AfterViewInit {
   }
 
   draw() {
-    //  offset / 15 => pixelSize
-
-    const pxlH = this.space.nativeElement.clientHeight / 20;
-    const pxlW = this.space.nativeElement.clientWidth / 20;
-    this.pxlSize = pxlH <= pxlW ? pxlH : pxlW;
-    this.width = Math.floor(this.space.nativeElement.clientWidth / this.pxlSize) * this.pxlSize;
-    this.height = Math.floor(this.space.nativeElement.clientHeight / this.pxlSize) * this.pxlSize;
-
-    this.rows = this.height / this.pxlSize;
-    this.cols = this.width / this.pxlSize;
-
     this.drawBG();
     if (!this.gameOver) {
       this.moveSnake();
@@ -202,14 +221,31 @@ export class GameComponent implements AfterViewInit {
     this.ctx = this.canvas.getContext("2d") as CanvasRenderingContext2D;
   }
 
+  onKillSnake() {
+    this.killSnake$?.unsubscribe();
+  }
+
   drawFinished() {
+    this.onKillSnake();
+    const points = this.snake.length;
     this.ctx.font = "48px serif";
     this.ctx.fillStyle = "#730942";
     this.ctx.fillText("Game Over!", 2 * this.pxlSize, (this.rows / 2) * this.pxlSize);
-    this.ctx.fillText(
-      "Points: " + this.snake.length,
-      2 * this.pxlSize,
-      (this.rows / 2) * this.pxlSize + this.pxlSize * 2
-    );
+    this.ctx.fillText("Points: " + points, 2 * this.pxlSize, (this.rows / 2) * this.pxlSize + this.pxlSize * 2);
+
+    if (this.user) {
+      this.hallOfFameService
+        .hallOfFameControllerAddScoreEntry({
+          body: {
+            score: points,
+            level: SkillLevel.BEGINNER,
+            date: new Date().toISOString(),
+            username: this.user.nickname ?? "",
+            userSub: this.user.sub ?? "",
+          },
+        })
+        .pipe(take(1))
+        .subscribe();
+    }
   }
 }

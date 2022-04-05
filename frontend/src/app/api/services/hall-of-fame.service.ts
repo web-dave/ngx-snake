@@ -77,7 +77,7 @@ export class HallOfFameService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   hallOfFameControllerAddScoreEntry$Response(params: {
-    body: ScoreEntryDto
+    body: Partial<ScoreEntryDto>
   }): Observable<StrictHttpResponse<ScoreEntryDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, HallOfFameService.HallOfFameControllerAddScoreEntryPath, 'put');
@@ -103,7 +103,7 @@ export class HallOfFameService extends BaseService {
    * This method sends `application/json` and handles request body of type `application/json`.
    */
   hallOfFameControllerAddScoreEntry(params: {
-    body: ScoreEntryDto
+    body: Partial<ScoreEntryDto>
   }): Observable<ScoreEntryDto> {
 
     return this.hallOfFameControllerAddScoreEntry$Response(params).pipe(

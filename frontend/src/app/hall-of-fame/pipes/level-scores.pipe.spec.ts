@@ -1,6 +1,6 @@
+import { ScoreEntryDto } from '../../api/models/score-entry-dto';
 import { ScoreMocks } from '../mocks/score-mocks';
 import { LevelScoresPipe } from './level-scores.pipe';
-import { ScoreEntryDto } from '../../api/models/score-entry-dto';
 
 describe('LevelScoresPipe', () => {
   let pipe: LevelScoresPipe;

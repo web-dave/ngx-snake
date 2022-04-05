@@ -1,4 +1,6 @@
-<div class="gamespace" #gamespace>
-  <!-- [style.height.px]="height" [style.width.px]="width"  -->
-  <canvas #canvas [height]="height" [width]="width"></canvas>
+<div class="snake-container">
+  <canvas #canvas height="300" width="300"></canvas>
+  <div>
+    <button *ngIf="gameOver" mat-button (click)="gameOver = false; startGame()">Retry</button>
+  </div>
 </div>
