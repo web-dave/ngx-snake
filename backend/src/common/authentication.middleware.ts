@@ -1,9 +1,11 @@
 import { NestMiddleware } from '@nestjs/common';
 import * as jwt from 'express-jwt';
 import { expressJwtSecret } from 'jwks-rsa';
+import { environment } from '../../../frontend/src/environments/environment';
 
 // TODO refactor process.env with a better solution to read the dotenv values
-const DOMAIN = process.env.DOMAIN;
+const DOMAIN = environment.DOMAIN;
+const AUDIENCE = environment.audience;
 
 export class AuthenticationMiddleware implements NestMiddleware {
   use(req, res, next) {
@@ -15,7 +17,7 @@ export class AuthenticationMiddleware implements NestMiddleware {
         jwksUri: `https://${DOMAIN}/.well-known/jwks.json`,
       }),
 
-      audience: process.env.AUDIENCE,
+      audience: AUDIENCE,
       issuer: `https://${DOMAIN}/`,
       algorithms: ['RS256'],
     })(req, res, (err) => {
