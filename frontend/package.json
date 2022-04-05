@@ -7,8 +7,7 @@
     "build": "ng build --configuration production",
     "test": "ng test",
     "lint": "eslint .",
-    "gen-service": "ng-openapi-gen --input http://localhost:3000/api-json --output src/app/api",
-    "config": "ts-node set-env.ts"
+    "gen-service": "ng-openapi-gen --input http://localhost:3000/api-json --output src/app/api"
   },
   "private": true,
   "dependencies": {

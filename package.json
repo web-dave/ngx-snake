@@ -28,7 +28,8 @@
     "fe:build": "cd frontend && npm run build",
     "fe:test": "cd frontend && npm run test",
     "fe:lint": "cd frontend && npm run lint",
-    "fe:gen-service": "cd frontend && npm run gen-service"
+    "fe:gen-service": "cd frontend && npm run gen-service",
+    "config": "cd frontend && ts-node set-env.ts"
   },
   "private": true
 }
