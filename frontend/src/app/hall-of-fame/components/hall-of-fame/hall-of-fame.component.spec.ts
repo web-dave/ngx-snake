@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
+import { ScoreEntryDto } from '../../../api/models/score-entry-dto';
 import { HallOfFameService } from '../../../api/services/hall-of-fame.service';
 import { MaterialTestingModule } from '../../../core/testing/material-testing/material-testing.module';
 import { ScoreMocks } from '../../mocks/score-mocks';
 
 import { HallOfFameComponent } from './hall-of-fame.component';
 import DoneCallback = jest.DoneCallback;
-import { ScoreEntryDto } from '../../../api/models/score-entry-dto';
 
 xdescribe('HallOfFameComponent', () => {
   let component: HallOfFameComponent;
