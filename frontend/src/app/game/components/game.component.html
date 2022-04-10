@@ -1,4 +1,7 @@
 <div class="snake-container">
+  <div class="score">
+    Current Score: {{ this.snake?.length }}
+  </div>
   <canvas #canvas height="300" width="300"></canvas>
   <div>
     <button *ngIf="gameOver" mat-button (click)="gameOver = false; startGame()">Retry</button>
