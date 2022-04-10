@@ -1,8 +1,8 @@
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
-import { AuthService, User } from "@auth0/auth0-angular";
-import { filter, fromEvent, interval, map, Subject, Subscription, take, takeUntil, tap } from "rxjs";
-import { HallOfFameService } from "../../api/services/hall-of-fame.service";
-import { SkillLevel } from "../../core/enums/skill-level.enums";
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AuthService, User } from '@auth0/auth0-angular';
+import { filter, fromEvent, interval, map, Subject, Subscription, take, takeUntil, tap } from 'rxjs';
+import { HallOfFameService } from '../../api/services/hall-of-fame.service';
+import { SkillLevel } from '../../core/enums/skill-level.enums';
 
 type IDirection = "right" | "left" | "up" | "down";
 type IPosition = { x: number; y: number };
@@ -47,7 +47,7 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(private authService: AuthService, private hallOfFameService: HallOfFameService) {}
 
   ngOnInit(): void {
-    this.user = this.authService.user$
+    this.authService.user$
       .pipe(takeUntil(this.destroy$))
       .subscribe((user: User | undefined | null) => (this.user = { ...user }));
   }
@@ -77,7 +77,6 @@ export class GameComponent implements OnInit, AfterViewInit, OnDestroy {
         filter((code) => ["right", "left", "up", "down"].includes(code))
       )
       .subscribe((code) => {
-        console.log(code);
         this.direction = code;
       });
     if (!this.gameOver) {
