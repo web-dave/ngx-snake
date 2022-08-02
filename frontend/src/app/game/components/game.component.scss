@@ -1,16 +1,15 @@
 :host {
-    display: block;
+  display: block;
 
-    .score {
-        color: #98928e;
-        padding: .4em;
-        text-align: end;
-    }
+  .score {
+    color: #98928e;
+    padding: .4em;
+    text-align: end;
+  }
 
-    .snake-container {
-        display: flex;
-        flex-direction: column;
-        width: 300px;
-    }
+  .snake-container {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+  }
 }
-
